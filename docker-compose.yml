@@ -1,0 +1,14 @@
+services:
+  whisper:
+    build: .
+    image: whisper-gpu:latest
+    gpus: all
+    volumes:
+      - ./:/work
+      - whisper-models:/models
+    environment:
+      HF_HOME: /models/hf
+      WHISPER_MODEL: ${WHISPER_MODEL:-medium}
+
+volumes:
+  whisper-models:
